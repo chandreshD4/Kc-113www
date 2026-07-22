@@ -13,11 +13,11 @@ jobs:
         with:
           flutter-version: '3.19.0'
       - run: flutter create . --project-name kc_113www
-      # यह लाइन एंड्रॉइड के कॉन्फ़िगरेशन में Multidex को जबरदस्ती चालू कर देगी
       - run: sed -i '/defaultConfig {/a \        multiDexEnabled true' android/app/build.gradle
       - run: flutter pub get
-      - run: flutter build apk --debug
+      # हमने 'debug' हटाकर 'release' कर दिया है, साइज 150 MB से घटकर ~20 MB हो जाएगा
+      - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
