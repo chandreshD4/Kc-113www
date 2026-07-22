@@ -13,8 +13,10 @@ jobs:
         with:
           flutter-version: '3.19.0'
       - run: flutter create . --project-name kc_113www
-      # यह कमांड Multidex को अपने आप ऑन कर देगी
-      - run: flutter build apk --debug --multidex
+      # यह लाइन एंड्रॉइड के कॉन्फ़िगरेशन में Multidex को जबरदस्ती चालू कर देगी
+      - run: sed -i '/defaultConfig {/a \        multiDexEnabled true' android/app/build.gradle
+      - run: flutter pub get
+      - run: flutter build apk --debug
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
