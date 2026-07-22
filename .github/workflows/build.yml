@@ -14,9 +14,10 @@ jobs:
           flutter-version: '3.19.0'
       - run: flutter create . --project-name kc_113www
       - run: sed -i '/defaultConfig {/a \        multiDexEnabled true' android/app/build.gradle
-      # इस बार हम सीधे रिलीज-एपके बना रहे हैं
-      - run: flutter build apk --release --split-per-abi
+      - run: flutter pub get
+      - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
+          # हमने पाथ को एकदम सरल कर दिया है ताकि एरर न आए
           path: build/app/outputs/flutter-apk/app-release.apk
