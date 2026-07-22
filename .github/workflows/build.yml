@@ -12,6 +12,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.19.0'
+      # यह लाइन सबसे जरूरी है: यह खाली प्रोजेक्ट में पूरा स्ट्रक्चर जोड़ देगी
+      - run: flutter create . --project-name kc_113www
       - run: flutter pub get
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
