@@ -13,9 +13,8 @@ jobs:
         with:
           flutter-version: '3.19.0'
       - run: flutter create . --project-name kc_113www
-      - run: flutter pub get
-      # हमने यहाँ 'debug' मोड का इस्तेमाल किया है ताकि यह आपके फोन पर बिना एरर के चले
-      - run: flutter build apk --debug
+      # यह कमांड Multidex को अपने आप ऑन कर देगी
+      - run: flutter build apk --debug --multidex
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
