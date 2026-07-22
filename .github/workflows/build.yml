@@ -14,9 +14,8 @@ jobs:
           flutter-version: '3.19.0'
       - run: flutter create . --project-name kc_113www
       - run: sed -i '/defaultConfig {/a \        multiDexEnabled true' android/app/build.gradle
-      - run: flutter pub get
-      # हमने 'debug' हटाकर 'release' कर दिया है, साइज 150 MB से घटकर ~20 MB हो जाएगा
-      - run: flutter build apk --release
+      # इस बार हम सीधे रिलीज-एपके बना रहे हैं
+      - run: flutter build apk --release --split-per-abi
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
